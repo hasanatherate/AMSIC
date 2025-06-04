@@ -1,0 +1,334 @@
+3:NOR
+===========================================================
+Table 1: Components for Building the Main Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties             |
+|--------------|-----------|------------------------|
+| gpdk180      | pmos      | L = 180n, W = Wp      |
+| gpdk180      | nmos      | L = 180n, W = Wn      |
+
+===========================================================
+Table 2: Components for Building the Test Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                                           |
+|--------------|-----------|------------------------------------------------------|
+| analogLib    | Vpulse    | V1 = 0V, V2 = 1.8V, Period = 20n, Rise Time = 1n,   |
+|              |           | Fall Time = 1n, Pulse Width = 10n         |
+| analogLib    | Vpulse    | V1 = 0V, V2 = 1.8V, Period = 50n, Rise Time = 1n,    |
+|              |           | Fall Time = 1n, Pulse Width = 25n                   |
+| analogLib    | Vdc       | DC Voltage = 1.8V                                   |
+| analogLib    | gnd       | Ground Node                                         |
+| analogLib    | cap       | Capacitance = 100fF                                 |
+
+===========================================================
+Table 3: Analysis Setup Values
+===========================================================
+
+| Analysis Name | Type      | Settings                          |
+|---------------|-----------|-----------------------------------|
+| Transient     | tran      | Stop Time = 50n, Accuracy = moderate |
+
+4:CS AMP
+===========================================================
+Table 1: Components for Building the Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                     |
+|--------------|-----------|--------------------------------|
+| gpdk180      | pmos      | W = 8.85μm, L = 180nm          |
+| gpdk180      | nmos      | W = 6u, L = 180nm            |
+
+===========================================================
+Table 2: Components for Building the Test Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                                         |
+|--------------|-----------|----------------------------------------------------|
+| analogLib    | Vac       | DC Voltage = 3.3V (Vdd)                            |
+| analogLib    | Vsin      | AC Magnitude = 1V, Frequency = 1kHz, Amplitude = 10μV |
+| analogLib    | Vdc       | DC Voltage = 592mV                                 |
+| analogLib    | res       | Resistance = 10Ω                                   |
+| analogLib    | idc       | DC Current = 100μA                                 |
+| analogLib    | cap       | Capacitance = 500fp                                |
+
+===========================================================
+Table 3: Analysis Setup Values
+===========================================================
+
+| Analysis Name | Type      | Properties                                     |
+|---------------|-----------|------------------------------------------------|
+| Transient     | tran      | Stop Time = 5ms, Accuracy = moderate           |
+| DC Analysis   | dc        | Save DC Operating Point                        |
+
+-----------------------------------------------------------
+DC Sweep Setup
+-----------------------------------------------------------
+
+| Sweep Variable | Component Name | Signal        | Parameter Name |
+|----------------|----------------|----------------|----------------|
+| Linear Sweep   | de             | SelectInput    | V               |
+| Start          |                |                | -5V             |
+| Stop           |                |                | 5V              |
+| Step Size      |                |                | 10mV            |
+
+AC sweep:
+| Sweep Type     | Logarithmic                          |
+|----------------|--------------------------------------|
+| Start          | 10                                 |
+| Stop           | 10G                                |
+| Points/Decade  | 10                                   |
+
+5:TG
+===========================================================
+Table 1: Components for Building the Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties             |
+|--------------|-----------|------------------------|
+| gpdk180      | pmos      | W = 2μm, L = 180n      |
+| gpdk180      | nmos      | W = 2μm, L = 180n      |
+      
+===========================================================
+Table 3: Components for Building the Test Schematic
+===========================================================
+
+| Library Name | Cell Name     | Properties                                   |
+|--------------|---------------|----------------------------------------------|
+| analogLib    | Vpulse (Vp)   | V1 = 0V, V2 = 1.8V, Period = 1us, Pulse Width = 500ns |
+| analogLib    | Vpulse (Vo,V1)| V1 = 0V, V2 = 1.8V, Period = 20μs, Pulse Width = 10μs   |
+| analogLib     | capacitor | Capacitance = 1pF 
+
+===========================================================
+Table 2: Analysis Setup Values
+===========================================================
+
+| Analysis Name | Type  | Properties                     |
+|---------------|-------|--------------------------------|
+| Transient     | tran  | Stop Time = 50ns, Accuracy = moderate |
+
+6:DiffAmp
+
+===========================================================
+Table 1: Components for Building the Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties               |
+|--------------|-----------|--------------------------|
+| gpdk180      | pmos      | W = 15um, L = 1um     |
+| gpdk180      | nmos      | W = 3um,  L = 1um      |
+| gpdk180      | nmos      | W = 4.5μm,  L = 1μm       |
+
+===========================================================
+Table 2: Components for Building the Test Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                                         |
+|--------------|-----------|----------------------------------------------------|
+| analogLib    | Vdc       | DC Voltage = 2.5V (Vdd)                            |
+| analogLib    | Vdc       | DC Voltage = -2.5V (Vss)                            |
+| analogLib    | Vsin      | AC Magnitude = 1V, DC Voltage = 0V, Offset = 0V, |
+|              |           | Amplitude = 5uV, Frequency = 1kHz                   |
+| analogLib    | idc       | DC Current = 30μA                                  |
+
+===========================================================
+Table 3: Analysis Setup Values
+===========================================================
+
+| Analysis Name | Type  | Properties                        |
+|---------------|-------|-----------------------------------|
+| Transient     | tran  | Stop Time = 5ms, Accuracy = moderate |
+| DC Analysis   | dc    | Save DC Operating Point           |
+
+-----------------------------------------------------------
+DC Sweep Setup
+-----------------------------------------------------------
+
+| Sweep Variable | Component Name | Signal        | Parameter Name |
+|----------------|----------------|----------------|----------------|
+| Automatic      | Vpulse         | SelectInput    | dc             |
+| Start          |                |                | -5V            |
+| Stop           |                |                | 5V             |
+===========================================================
+AC Sweep Setup
+===========================================================
+
+| Parameter          | Value               |
+|--------------------|---------------------|
+| Start Frequency    | 10            |
+| Stop Frequency     | 10 G              |
+| Sweep Type        | Logarithmic          |
+| Points per Decade  | 10 |
+
+7:Integrator
+
+===========================================================
+Table 1: Components for Building the Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                     |
+|--------------|-----------|--------------------------------|
+| gpdk180      | pmos      | W = 10.3μm, L = 1μm             |
+| gpdk180      | nmos      | W = 2.5μm,  L = 1μm             |
+| gpdk180      | nmos      | W = 8μm,    L = 1μm          |
+
+===========================================================
+Table 2: Components for Building Test Schematic 1
+===========================================================
+
+| Library Name | Cell Name | Properties                     |
+|--------------|-----------|--------------------------------|
+| analogLib    | Vpulse    | V1 = 750mV, V2 = 1.15V, Period = 1ms |
+| analogLib    | Vdc       | VDD = 3.3V, Vp = 950mV, Vb = 650mV |
+| analogLib    | gnd       | VSS (ground)                   |
+| analogLib    | res       | R = 15kΩ                       |
+| analogLib    | cap       | C = 10nF                       |
+
+===========================================================
+Table 3: Components for Building Test Schematic 2
+===========================================================
+
+| Library Name | Cell Name | Properties                     |
+|--------------|-----------|--------------------------------|
+| analogLib    | Vpulse    | V1 = -200mV, V2 = 200mV, Period = 1ms, PW = 500μs |
+| analogLib    | Vdc       | VDD = 3.3V, Vp = 950mV, Vb:650mV|
+| analogLib    | gnd       | VSS (ground)                   |
+| analogLib    | res       | R = 15kΩ                       |
+| analogLib    | cap       | C = 10nF                       |
+
+===========================================================
+Table: Components for Building Test Schematic 3
+===========================================================
+
+| Library Name | Cell Name | Properties                                                  |
+|--------------|-----------|-------------------------------------------------------------|
+| analogLib    | Vsin      | AC Magnitude = 1V, DC Voltage = 0V, Offset Voltage = 0V,    |
+|              |           | Amplitude = 200mV, Frequency = 1kHz                         |
+| analogLib    | Vdc       | VDD = 3.3V, VP = 950mV, VB = 650mV                           |
+| analogLib    | gnd       | VSS (ground)                                                |
+| analogLib    | res       | Resistance = 15kΩ                                           |
+| analogLib    | cap       | Capacitance = 10nF                                         |
+
+===========================================================
+Table: Analysis Setup
+===========================================================
+
+| Analysis Name | Type  | Properties                     |
+|---------------|-------|--------------------------------|
+| Transient     | tran  | Stop Time = 5m, Accuracy = moderate |
+
+8:Op Amp
+
+===========================================================
+Table: Components for Building the Test Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                                         |
+|--------------|-----------|----------------------------------------------------|
+| analogLib    | Vdc       | DC Voltage = 2.5V (Vdd), DC Voltage = -2.5V (Vss) |
+| analogLib    | Vsin      | AC Magnitude = 1V, DC Voltage = 0V, Offset = 0V,  |
+|              |           | Amplitude = 5μV, Frequency = 1kHz                 |
+| analogLib    | idc       | DC Current = 30μA                                  |
+
+===========================================================
+Table: Analysis Setup
+===========================================================
+
+| Analysis Name | Type       | Properties                               |
+|---------------|------------|------------------------------------------|
+| Transient     | tran       | Stop Time = 5m, Accuracy = moderate     |
+| DC Analysis   | dc         | Save DC Operating Point                  |
+
+-----------------------------------------------------------
+DC Sweep Setup
+-----------------------------------------------------------
+
+| Sweep Variable | Component Name | Signal        | Parameter Name |
+|----------------|----------------|----------------|----------------|
+| Automatic      | Vpulse         | SelectInput    | dc             |
+| Start          |                |                | -5V            |
+| Stop           |                |                | 5V             |
+
+-----------------------------------------------------------
+AC Sweep Setup
+-----------------------------------------------------------
+
+| Sweep Type     | Range       | Start   | Stop   |
+|----------------|-------------|---------|--------|
+| Automatic      | Start-Stop  | 100     | 10G |
+
+9:SRAM
+
+===========================================================
+Table: Components for Building the Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                |
+|--------------|-----------|---------------------------|
+| gpdk45       | pmos      | W = 120n, L = 45n       |
+| gpdk45       | nmos      | W = 120n, L = 45n       |
+
+===========================================================
+Table: Components for Building the Test Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                                       |
+|--------------|-----------|--------------------------------------------------|
+| analogLib    | Vdc       | DC Voltage = 1.2V (Vdd)                          |
+| analogLib    | Vpulse    | DC Voltage = 1.2V, V1 = 0V, V2 = 1.8V, Period = 2ns |
+| analogLib    | Vpulse    | DC Voltage = 1.2V, V1 = 1.2V, V2 = 0V, Period = 2ns |
+| analogLib    | Vpulse    | DC Voltage = 1.2V, V1 = 0V, V2 = 1.2V, Period = 4ns |
+| analogLib    | gnd       | Ground                                           |
+
+===========================================================
+Table: Analysis Setup
+===========================================================
+
+| Analysis Name | Type  | Properties                          |
+|---------------|-------|-------------------------------------|
+| Transient     | tran  | Stop Time = 8ns, Accuracy = moderate |
+| DC Analysis   | dc    | Save DC Operating Point             |
+
+-----------------------------------------------------------
+DC Sweep Configuration
+-----------------------------------------------------------
+
+| Sweep Variable | Component Name | Parameter Name | Range         |
+|----------------|----------------|----------------|---------------|
+| Vpulse         | Select input   | dc             | 0V to 1.2V    |
+
+10:R2R
+
+===========================================================
+Table: Components for Building the Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties             |
+|--------------|-----------|------------------------|
+| gpdk180      | polyres   | R = 2kΩ                |
+| gpdk180      | polyres   | R = 1kΩ                |
+| analogLib    | idc       | DC Current = 30μA      |
+
+===========================================================
+Table: Components for Building the Test Schematic
+===========================================================
+
+| Library Name | Cell Name | Properties                                   |
+|--------------|-----------|----------------------------------------------|
+| analogLib    | Vpulse D0 | V1 = 0V, V2 = 1.1V, Period = 20μs            |
+| analogLib    | Vpulse D1 | V1 = 0V, V2 = 1.8V, Period = 40μs            |
+| analogLib    | Vpulse D2 | V1 = 0V, V2 = 1.8V, Period = 80μs            |
+| analogLib    | Vpulse D3 | V1 = 0V, V2 = 1.3V, Period = 160μs           |
+| analogLib    | Vdc       | Vdd = 2.5V, Vss = -2.5V                        |
+| analogLib    | idc       | DC Current = 30μA                            |
+
+===========================================================
+Table: Analysis Setup
+===========================================================
+
+| Analysis Name | Type  | Properties                          |
+|---------------|-------|-------------------------------------|
+| Transient     | tran  | Stop Time = 5m, Accuracy = moderate |
+
+

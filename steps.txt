@@ -1,0 +1,392 @@
+AMSIC steps 
+
+
+INTRODUCTION:
+Cadence Virtuoso is a widely used tool for schematic design, simulation, and layout of analog and digital circuits in VLSI design. This experiment involves the creation of a schematic in Cadence Virtuoso, simulation using ADE (Analog Design Environment), and plotting of output waveforms.
+
+STEPS FOR EXECUTING IN CADENCE VIRTUOSO:
+1. Setting Up the Environment:
+Right-click and open the terminal.
+
+
+Create a directory using the command:
+
+ mkdir <directory_name>
+
+
+Enter into your directory using:
+
+ cd <directory_name>
+
+
+Launch Virtuoso by typing:
+
+ virtuoso &
+ and press Enter. The Virtuoso window will open.
+
+
+
+2. Creating a New Library:
+In Virtuoso, go to File > New > Library.
+
+
+Give a Library Name.
+
+
+Attach the Technology File (e.g., gpdk180).
+
+
+Click OK.
+
+
+
+3. Creating a New Cell View (Schematic):
+Go to File > New > Cell View.
+
+
+Enter a Cell Name.
+
+
+Select Schematic as the View Type.
+
+
+Click OK.
+
+
+Draw the required schematic in the opened schematic editor window.
+
+
+
+4. Placing Components (Instances):
+Press i (shortcut for Create > Instance).
+
+
+Select Library (e.g., analogLib for basic components).
+
+
+Choose the desired component (e.g., VDC, VPulse, Capacitor, etc.).
+
+
+Set the parameters as per requirement:
+
+
+For VDC: V = 1.8V
+
+
+For VPulse:
+
+
+V1 = 0V
+
+
+V2 = 1.8V
+
+
+Period = 20ns
+
+
+Pulse Width = 10ns
+
+
+Rise Time = Fall Time = 1ns
+
+
+For Capacitor: C = 0.1pF
+
+
+Click to place the components in the schematic.
+
+
+
+5. Wiring the Circuit:
+Press w (shortcut for Create > Wire (Narrow)).
+
+
+Make all necessary connections.
+
+
+Press L to add labels (if required).
+
+
+
+6. Saving and Creating a Symbol:
+Go to File > Check and Save to save the schematic.
+
+
+For symbol generation:
+
+
+Go to Create > Cellview > From Cellview.
+
+
+Click OK.
+
+
+Save the symbol view.
+
+
+
+7. Simulation Setup (ADE - Analog Design Environment):
+Go to Launch > ADE L.
+
+
+In ADE window:
+
+
+Go to Setup > Model Libraries.
+
+
+Add the appropriate Technology File (e.g., gpdk180).
+
+
+
+8. Setting Analysis:
+Go to Analyses > Choose and set:
+
+
+Transient Analysis:
+
+
+Stop Time = 80ns
+
+
+Accuracy = Moderate
+
+
+DC Analysis:
+
+
+Sweep Component = Vds (or as required)
+
+
+Sweep Type = Linear
+
+
+Start = 0V, Stop = 1.8V
+
+
+Step Size = 0.01V
+
+
+
+9. Plotting Outputs:
+Go to Outputs > To Be Plotted > Select on Schematic and select the required nodes.
+
+
+Go to Variables > Edit to set variable values (e.g., Vgs = 0.9V).
+
+
+Go to Tools > Parametric Analysis to sweep variables (e.g., Vgs: 0 to 0.9V, step size 0.3V, linear mode).
+
+
+
+10. Run Simulation:
+Click on the Run button.
+
+
+View the output waveforms in the Results window.
+
+
+
+
+Post-Layout Simulation and Physical Design Flow in Cadence Virtuoso
+
+I. Layout Design and Parasitic Extraction Flow
+1️⃣ Creating the Layout:
+In Virtuoso, go to Launch > Layout XL.
+
+
+In the Create New File dialog:
+
+
+Set View Name to Layout.
+
+
+Click OK.
+
+
+2️⃣ Generating Layout from Schematic:
+In Layout XL window:
+
+
+Go to Connectivity > Generate > All From Source.
+
+
+Click OK.
+
+
+Press Shift + F to refresh and display all layers.
+
+
+3️⃣ Layout Editing:
+Place components, routes, and pins:
+
+
+Pins:
+
+
+Go to Place > Pin.
+
+
+For Vin → Left
+
+
+For Vout → Right
+
+
+For VDD → Top
+
+
+For GND → Bottom
+
+
+Click Apply after each placement.
+
+
+Draw poly gates:
+
+
+Go to Create > Shape > Path.
+
+
+Connect gates as required.
+
+
+For PMOS transistor layout:
+
+
+Expand PR boundary by dragging (Click + Drag).
+
+
+Press Esc when done.
+
+
+Short Vdd, source, and substrate connections accordingly.
+
+
+4️⃣ DRC (Design Rule Check):
+Go to Assura > DRC:
+
+
+Set Technology to gpdk180.
+
+
+Click OK.
+
+
+Verify there are no mismatches. If OK, proceed.
+
+
+
+5️⃣ Parasitic Extraction (PEX):
+Go to Calibre > Via > Via Definition (for via settings, e.g., M1 to P1).
+
+
+Save.
+
+
+Go to Assura > Run Quantus RC Extraction:
+
+
+Output: Extracted View.
+
+
+Extraction Type: RC.
+
+
+Reference Node: GND.
+
+
+HRCX: Disable.
+
+
+Click OK.
+
+
+After extraction, Close all windows.
+
+
+In Virtuoso:
+
+
+Go to File > Open > View.
+
+
+Select au-extracted view for post-layout simulation.
+
+
+
+II. Post-Layout Simulation Setup:
+1️⃣ Shift+I for Parasitic Values:
+In the au-extracted view, press Shift + I to check the RC parasitic values.
+
+
+2️⃣ Simulation Setup:
+In Virtuoso Window:
+
+
+Go to Tools > Library Manager.
+
+
+Open the test circuit schematic.
+
+
+Go to File > New > Cellview.
+
+
+Type: Configuration.
+
+
+In the Create Configuration window:
+
+
+Use Template: spectre.
+
+
+Click OK.
+
+
+In View: Set to schematic. Click OK.
+
+
+In the ADEL (ADE L) Window:
+
+
+Go to Session > Save State.
+
+
+Select Save in Cellview option.
+
+
+Click Apply and OK.
+
+
+Click on Netlist and Run the simulation.
+
+
+
+III. Final Steps:
+Open the schematic and layout as needed.
+
+
+In ADE:
+
+
+Launch ADE > Load the previously saved state (cellview).
+
+
+Run post-layout simulation.
+
+
+View results and analyze the impact of parasitic effects (R & C values).
+
+
+
+🌟 Notes & Best Practices:
+✅ Always verify DRC and LVS before extraction.
+ ✅ Use Extracted View (au-extracted) for post-layout simulation.
+ ✅ Check for pin mismatches and connectivity errors during layout generation.
+ ✅ Always Save your design state regularly in ADEL.
+
+
+
