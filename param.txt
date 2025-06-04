@@ -1,3 +1,30 @@
+1:NMOS
+
+1. Input Characterization
+-------------------------
+- Vgs is fixed; Vas (drain voltage) is varied.
+- Sweep Vas from 0 V to 1.8 V in steps of 0.05 V, keeping Vgs fixed.
+- Analysis type: DC analysis.
+- Step size: 0.01 V for fine granularity.
+- Fixed Vgs = 0.9 V.
+- Vds = Vas.
+- Parametric analysis over Vds from 0 to 1.8 V with step size 0.3 V.
+- Input pulse for transient test: V1 = 0 V, V2 = 1.8 V, rise/fall time = 1 ns, period = 20 ns, pulse width = 10 ns.
+
+2. Output (Transfer) Characteristics
+-------------------------------------
+- Vas (drain voltage) is fixed; Vgs is varied.
+- Sweep Vgs from 0 V to 1.8 V in steps of 0.05 V, keeping Vas fixed at 1.8 V.
+- Step size for parametric analysis: 0.3 V.
+- Analysis: DC parametric sweep of Vgs from 0 to 1.8 V.
+
+Conclusion:
+-----------
+- The MOS transistor behavior was characterized with:
+  a) Fixed Vgs, varying Vas (input characteristics).
+  b) Fixed Vas, varying Vgs (output or transfer characteristics).
+- These characterizations help understand transistor operation under different bias conditions.
+
 3:NOR
 ===========================================================
 Table 1: Components for Building the Main Schematic
