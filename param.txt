@@ -331,4 +331,19 @@ Table: Analysis Setup
 |---------------|-------|-------------------------------------|
 | Transient     | tran  | Stop Time = 5m, Accuracy = moderate |
 
+11:MOS
+
+Device Details:
+- Technology: gpdk90
+- Device: NMOS1V
+- Channel length (L): 250 nm
+- Channel width (W): 2 μm
+
+Analysis Setup:
+- Type: DC analysis
+- Save DC operating point
+- Sweep parameter: Vdc (DC voltage)
+- Sweep range: 0 V to 1.8 V
+- Output node to plot: Drain terminal (select on design)
+
 
