@@ -25,6 +25,32 @@ Conclusion:
   b) Fixed Vas, varying Vgs (output or transfer characteristics).
 - These characterizations help understand transistor operation under different bias conditions.
 
+2:INVERTER
+===========================================================
+Actual Schematic Parameters
+===========================================================
+
+| Component | Parameter | Value      |
+|-----------|-----------|------------|
+| PMOS      | Width     | Wp         |
+| PMOS      | Length    | 180 nm     |
+| NMOS      | Width     | Wn         |
+| NMOS      | Length    | 180 nm     |
+
+===========================================================
+Test Schematic Setup
+===========================================================
+
+| Component     | Parameter       | Value         |
+|---------------|-----------------|---------------|
+| Input (Vin)   | Source          | Vpulse        |
+|               | Voltage Levels  | V1 = 0 V      |
+|               |                 | V2 = 1.8 V    |
+|               | Rise Time (tr)  | 1 ns          |
+|               | Fall Time (tf)  | 1 ns          |
+| Output (Vout) | Load Capacitor  | 0.1 pF        |
+| Power Supply  | Vdd             | 1.8 V (DC)    |
+
 3:NOR
 ===========================================================
 Table 1: Components for Building the Main Schematic
