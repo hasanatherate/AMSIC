@@ -1,5 +1,6 @@
 1:NMOS
 
+W=10um,L=180n
 1. Input Characterization
 -------------------------
 - Vgs is fixed; Vas (drain voltage) is varied.
