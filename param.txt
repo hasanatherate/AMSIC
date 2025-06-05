@@ -29,7 +29,7 @@ Actual Schematic Parameters
 |-----------|-----------|------------|
 | PMOS      | Width     | Wp         |
 | PMOS      | Length    | 180 nm     |
-| NMOS      | Width     | Wn         |
+| NMOS      | Width     | 2u        |
 | NMOS      | Length    | 180 nm     |
 
 ===========================================================
